@@ -25,9 +25,8 @@ Note: Before you do anything, make sure to login to [CheatNetwork](https://cheat
 1. Navigate to a Quizizz game.
 2. The script will automatically run and add a button to retrieve answers.
 3. Click the button to retrieve and display the correct answers.
-
-Once done, you should see this:
 ![alt text](img.png)
+
 
 ## Contributing
 
