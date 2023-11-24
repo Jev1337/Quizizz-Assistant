@@ -4,7 +4,7 @@
 // @version      1.7
 // @description  Assist with Quizizz by marking correct answers
 // @author       Malek
-// @match        https://quizizz.com/join/game/*
+// @match        https://quizizz.com/*
 // @grant        GM_xmlhttpRequest
 // @connect      https://api.cheatnetwork.eu/*
 // ==/UserScript==
