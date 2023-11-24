@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Quizizz Assistant
 // @namespace    https://github.com/Jev1337
-// @version      1.7
+// @version      3.1.7
 // @description  Assist with Quizizz by marking correct answers
 // @author       Malek
 // @match        https://quizizz.com/*
