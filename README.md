@@ -43,4 +43,5 @@ This project is licensed under the GPL v3 License - see the [LICENSE](LICENSE) f
 ## Disclaimer
 
 This script is for educational purposes only. Cheating is not encouraged or endorsed. Please use responsibly.
+
 Show support to [CheatNetwork](https://cheatnetwork.eu) and their [Discord](https://discord.com/invite/5N9Km7Udum) server as their services run based on ads and memberships!
