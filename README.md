@@ -31,7 +31,7 @@ Contributions are welcome! If you have a bug to report, a feature to suggest, or
 
 ## License
 
-This project is licensed under the GNU v3 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GPL v3 License - see the [LICENSE](LICENSE) file for details.
 
 ## Disclaimer
 
