@@ -26,6 +26,9 @@ Note: Before you do anything, make sure to login to [CheatNetwork](https://cheat
 2. The script will automatically run and add a button to retrieve answers.
 3. Click the button to retrieve and display the correct answers.
 
+Once done, you should see this:
+![alt text](img.png)
+
 ## Contributing
 
 Contributions are welcome! If you have a bug to report, a feature to suggest, or changes to contribute, please open an issue to discuss what you would like to change. Pull requests are also welcome.
