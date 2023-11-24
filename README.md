@@ -27,6 +27,10 @@ Note: Before you do anything, make sure to login to [CheatNetwork](https://cheat
 3. Click the button to retrieve and display the correct answers.
 ![alt text](img.png)
 
+## Debugging
+
+If the button does not show up, refresh the page. Other issues (with button appearing), should be logged in the console, so feel free to send them over in the issues!
+
 
 ## Contributing
 
