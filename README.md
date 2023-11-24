@@ -19,6 +19,8 @@ This script is designed to be used with a userscript manager such as Tampermonke
 
 ## Usage
 
+Note: Before you do anything, make sure to login to [CheatNetwork](https://cheatnetwork.eu/login) as the script will use your cookies in order to access the API.
+
 1. Navigate to a Quizizz game.
 2. The script will automatically run and add a button to retrieve answers.
 3. Click the button to retrieve and display the correct answers.
@@ -29,7 +31,7 @@ Contributions are welcome! If you have a bug to report, a feature to suggest, or
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU v3 License - see the [LICENSE](LICENSE) file for details.
 
 ## Disclaimer
 
