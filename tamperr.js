@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Quizizz Assistant
 // @namespace    https://github.com/Jev1337
-// @version      3.1.7
+// @version      1.7
 // @description  Assist with Quizizz by marking correct answers
 // @author       Malek
-// @match        https://quizizz.com/*
+// @match        https://quizizz.com/join/game/*
 // @grant        GM_xmlhttpRequest
 // @connect      https://api.cheatnetwork.eu/*
 // ==/UserScript==
@@ -107,27 +107,28 @@
         };
 
         console.log("Quizizz Assistant Loaded!");
-        console.log(document.getElementsByClassName("room-code"));
+        console.log(code);
         const retrieveAnswersButton = document.createElement("button");
-        retrieveAnswersButton.innerHTML = '<i class="game-end-icon icon-fas-flag-checkered" ></i>';
+        retrieveAnswersButton.innerHTML = '<i class="game-end-icon icon-fas-flag-checkered"></i>';
         retrieveAnswersButton.id = "retrieveAnswersButton";
         retrieveAnswersButton.addEventListener("click", retrieveAnswers);
         document.getElementsByClassName("actions-container")[0].appendChild(retrieveAnswersButton);
 
     }
+
     var code = "";
     let interval = setInterval(function() {
         console.log("Checking for room code...");
         if (document.getElementsByClassName("room-code").length > 0) {
             clearInterval(interval);
-            main();
             code = document.getElementsByClassName("room-code")[0].innerText;
+            main();
         }
         if (document.getElementsByClassName("code").length > 0) {
             clearInterval(interval);
-            main();
             code = document.getElementsByClassName("code")[0].innerText;
             code = code.replace(/\s/g, '');
+            main();
         }
     }, 1000);
 
