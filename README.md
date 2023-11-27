@@ -8,8 +8,8 @@ Note: This has only been tested in Test Mode (Free Version) with MCQ and MSQ.
 - Automatically marks the correct answers in Quizizz games.
 - Works seamlessly with the Quizizz interface.
 
-v1 Uses CheatNetwork's API (Login Required)
-v2 Uses Quizit's API (No Login Required)
+- v1 Uses CheatNetwork's API (Login Required)
+- v2 Uses Quizit's API (No Login Required)
 
 ## Installation
 
