@@ -113,10 +113,8 @@
         retrieveAnswersButton.id = "retrieveAnswersButton";
         retrieveAnswersButton.addEventListener("click", retrieveAnswers);
         document.getElementsByClassName("actions-container")[0].appendChild(retrieveAnswersButton);
-        //add event listener on press on "h" button : it makes the retrieveAnswersButton hidden
         document.addEventListener('keydown', (event) => {
             if (event.key === 'h') {
-                //toggle visibility of retrieveAnswersButton
                 if (retrieveAnswersButton.style.visibility == "hidden") {
                     retrieveAnswersButton.style.visibility = "visible";
                 } else {
