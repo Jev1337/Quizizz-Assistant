@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Quizizz Assistant
 // @namespace    https://github.com/Jev1337
-// @version      2.1
+// @version      2.1.1
 // @description  Assist with Quizizz by marking correct answers
 // @author       Malek
 // @match        https://quizizz.com/join/game/*
@@ -17,7 +17,7 @@
     function unescape(html) {
         const divElement = document.createElement("div");
         divElement.innerHTML = html;
-        return divElement.textContent || tmp.innerText || "";
+        return divElement.textContent;
     }
     function main() {
         const processResponse = (apiResponse) => {
@@ -25,20 +25,20 @@
         
             if (questionElement) {
                 var questionText = questionElement.textContent;
-        
                 const answer = apiResponse.data.answers.find((answer) => unescape(answer.question.text) === questionText);
                 if (answer) {
                     const correctAnswerText = answer.answers.map(answer => answer.text).join(', ');
+                    console.log('%c Answer(s): ' + unescape(correctAnswerText), 'background: #222; color: #bada55');
                     for (const a of document.querySelectorAll("p[style='display:inline']")) {
                         for (const b of correctAnswerText.split(", ")) {
-                            if (a.textContent.includes(unescape(b))) {
+                            console.debug(a.textContent + " === " + unescape(b));
+                            if (a.textContent === unescape(b)) {
                                 a.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("option-pressed");
                             }
                         }
                     }
-                } else {
+                } else 
                     console.error("Failed to find answer to the question!");
-                }
             } else
                 console.error("Failed to find question element!");
         };
@@ -70,7 +70,8 @@
             onload: (response) => {
                 if (response.status === 200) {
                     apiResponse = JSON.parse(response.responseText);
-                    console.log("Answers retrieved!");
+                    console.log('%c Answers Retrieved! ', 'background: #222; color: #bada55');
+                    console.debug(apiResponse);
                     main();
                 } else {
                     level1();
