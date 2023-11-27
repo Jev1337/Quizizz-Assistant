@@ -28,8 +28,8 @@ Note: Before you do anything, make sure to login to [CheatNetwork](https://cheat
 ![alt text](img.png)
 
 ### Shortcuts
-P Key: Reveals Answers
-H Key: Hides Reveal Button
+1. P Key: Reveals Answers
+2. H Key: Hides Reveal Button
 
 ## Debugging
 
