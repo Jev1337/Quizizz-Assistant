@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Quizizz Assistant
 // @namespace    https://github.com/Jev1337
-// @version      1.9
+// @version      1.9.1
 // @description  Assist with Quizizz by marking correct answers
 // @author       Malek
 // @match        https://quizizz.com/join/game/*
@@ -17,7 +17,7 @@
     function unescape(html) {
         const divElement = document.createElement("div");
         divElement.innerHTML = html;
-        return divElement.textContent || tmp.innerText || "";
+        return divElement.textContent;
     }
 
 
@@ -28,25 +28,25 @@
 
             if (questionElement) {
                 var questionText = questionElement.textContent;
-
                 const answer = apiResponse.answers.find((answer) => unescape(answer.question) === questionText);
-
                 if (answer) {
                     const correctAnswerIndexArray = answer.answer;
                     const correctAnswerText = correctAnswerIndexArray.map(index => answer.options[index].text).join(', ');
+                    console.log('%c Answer(s): ' + unescape(correctAnswerText), 'background: #222; color: #bada55');
                     for (const a of document.querySelectorAll("p[style='display:inline']")) {
+                        console.debug(a.textContent + " === " + unescape(b));
                         for (const b of correctAnswerText.split(", ")) {
-                            if (a.textContent.includes(unescape(b))) {
+                            if (a.textContent === unescape(b)) {
                                 a.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("option-pressed");
                             }
                         }
                     }
-                }
-            }
+                }else
+                    console.error("Failed to find answer to the question!");
+            } else
+                console.error("Failed to find question element!");
         };
 
-        console.log("Quizizz Assistant Loaded!");
-        console.log(code);
         const retrieveAnswersButton = document.createElement("button");
         retrieveAnswersButton.innerHTML = '<i class="game-end-icon icon-fas-flag-checkered"></i>';
         retrieveAnswersButton.id = "retrieveAnswersButton";
@@ -74,6 +74,8 @@
             onload: (response) => {
                 if (response.status === 200) {
                     apiResponse = JSON.parse(response.responseText);
+                    console.log('%c Answers Retrieved! ', 'background: #222; color: #bada55');
+                    console.debug(apiResponse);
                     main();
                 } else if (response.status === 403) {
                     console.error("Please login to CheatNetwork to use this script.");
