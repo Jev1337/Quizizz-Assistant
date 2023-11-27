@@ -1,13 +1,15 @@
 # Quizizz Assistant
 
-Quizizz Assistant is a userscript designed to assist with Quizizz games by marking the correct answers. It uses the [CheatNetwork](https://cheatnetwork.eu/) API to retrieve the answers for a given Quizizz game.
+Quizizz Assistant is a userscript designed to assist with Quizizz games by marking the correct answers. It uses Quizlet's API to retrieve the answers.
 
 ## Features
 Note: This has only been tested in Test Mode (Free Version) with MCQ and MSQ.
 
 - Automatically marks the correct answers in Quizizz games.
-- Uses the CheatNetwork API to retrieve answers.
 - Works seamlessly with the Quizizz interface.
+
+v1 Uses CheatNetwork's API (Login Required)
+v2 Uses Quizlet's API (No Login Required)
 
 ## Installation
 
@@ -19,8 +21,6 @@ This script is designed to be used with a userscript manager such as Tampermonke
 4. Click `Install` to add the script to Tampermonkey.
 
 ## Usage
-
-Note: Before you do anything, make sure to login to [CheatNetwork](https://cheatnetwork.eu/login) as the script will use your cookies in order to access the API.
 
 1. Navigate to a Quizizz game.
 2. The script will automatically run and add a button to retrieve answers. (NOTE: Sometimes you have to refresh the page in order for the script to load!)
@@ -47,5 +47,3 @@ This project is licensed under the GPL v3 License - see the [LICENSE](LICENSE) f
 ## Disclaimer
 
 This script is for educational purposes only. Cheating is not encouraged or endorsed. Please use responsibly.
-
-Show support to [CheatNetwork](https://cheatnetwork.eu) and their [Discord](https://discord.com/invite/5N9Km7Udum) server as their services run based on ads and memberships!
