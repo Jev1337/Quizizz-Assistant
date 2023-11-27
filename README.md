@@ -27,6 +27,10 @@ Note: Before you do anything, make sure to login to [CheatNetwork](https://cheat
 4. Click the button to retrieve and display the correct answers.
 ![alt text](img.png)
 
+### Shortcuts
+P Key: Reveals Answers
+H Key: Hides Reveal Button
+
 ## Debugging
 
 If the button does not show up, refresh the page. Other issues (with button appearing), should be logged in the console, so feel free to send them over in the issues!
