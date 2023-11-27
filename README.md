@@ -1,6 +1,6 @@
 # Quizizz Assistant
 
-Quizizz Assistant is a userscript designed to assist with Quizizz games by marking the correct answers. It uses Quizit's API to retrieve the answers.
+Quizizz Assistant is a userscript designed to assist with Quizizz games by marking the correct answers. It uses an API(2) to retrieve the answers.
 
 ## Features
 Note: This has only been tested in Test Mode (Free Version) with MCQ and MSQ.
