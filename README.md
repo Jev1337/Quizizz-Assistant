@@ -9,8 +9,8 @@ Note: This has only been tested in Test Mode (Free Version) with MCQ and MSQ.
 - Works seamlessly with the Quizizz interface.
   
 ### v1 and v2 
-- v1 Uses CheatNetwork's API (Login Required)
-- v2 Uses Quizit's API (No Login Required)
+- v1 Uses CheatNetwork's API, it requires you to login to CheatNetwork's website in order to use it. This will allow you to cheat on Private Rooms.
+- v2 Uses Quizit's API, it does not require you to login, however this won't allow you to cheat on Private Rooms.
 
 ## Installation
 
