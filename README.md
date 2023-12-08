@@ -18,8 +18,9 @@ This script is designed to be used with a userscript manager such as Tampermonke
 
 1. Install Tampermonkey from the [Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) or [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/).
 2. Click on the `Raw` button at the top of the script view on GitHub.
-3. Tampermonkey should recognize the script and ask for permission to install it.
-4. Click `Install` to add the script to Tampermonkey.
+3. CTRL-A CTRL-C
+4. Click `Create a new script...` to add the script to Tampermonkey.
+5. CTRL-V CTRL-S
 
 ## Usage
 
