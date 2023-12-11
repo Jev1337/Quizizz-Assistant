@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Quizizz Assistant
 // @namespace    https://github.com/Jev1337
-// @version      1.9.2
+// @version      1.9.9
 // @description  Assist with Quizizz by marking correct answers
 // @author       Malek
 // @match        https://quizizz.com/join/game/*
@@ -33,16 +33,71 @@
                     const correctAnswerIndexArray = answer.answer;
                     const correctAnswerText = correctAnswerIndexArray.map(index => answer.options[index].text).join(', ');
                     console.log('%c Answer(s): ' + unescape(correctAnswerText), 'background: #222; color: #bada55');
+                    var i = 0;
                     for (const a of document.querySelectorAll("p[style='display:inline']")) {
                         for (const b of correctAnswerText.split(", ")) {
                             console.debug(a.textContent + " === " + unescape(b));
                             if (a.textContent === unescape(b)) {
                                 a.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("option-pressed");
+                                i++;
                             }
                         }
                     }
-                }else
-                    console.error("Failed to find answer to the question!");
+                    if (i < correctAnswerText.split(", ").length) {
+                        console.error("Failed to tag all answers to the question! Retrying with alternate method...");
+                        i = 0;
+                        for (const a of document.querySelectorAll("p[style='display:inline']")) {
+                            for (const b of correctAnswerText.split(", ")) {
+                                console.debug(a.textContent + ".includes(" + unescape(b)+ ")");
+                                if (a.textContent.includes(unescape(b))) {
+                                    a.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("option-pressed");
+                                    i++;
+                                }
+                            }
+                        }
+                        if (i < correctAnswerText.split(", ").length)
+                            console.error("Failed to tag answer! Over and Out.");
+                        else
+                            console.log("%c Alternate Method Successful!", 'background: #222; color: #bada55');
+                    }
+                } else {
+                    console.error("Failed to find answer to the question! Retrying with alternate method...");
+                    const answer = apiResponse.answers.find((answer) => unescape(answer.question).includes(questionText));
+                    if (answer) {
+                        const correctAnswerIndexArray = answer.answer;
+                        const correctAnswerText = correctAnswerIndexArray.map(index => answer.options[index].text).join(', ');
+                        console.log('%c Answer(s): ' + unescape(correctAnswerText), 'background: #222; color: #bada55');
+                        i = 0;
+                        for (const a of document.querySelectorAll("p[style='display:inline']")) {
+                            for (const b of correctAnswerText.split(", ")) {
+                                console.debug(a.textContent + " === " + unescape(b));
+                                if (a.textContent === unescape(b)) {
+                                    a.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("option-pressed");
+                                    i++;
+                                }
+                            }
+                        }
+                        if (i < correctAnswerText.split(", ").length) {
+                            console.error("Failed to tag answer to the question! Retrying with alternate method...");
+                                i = 0;
+                                for (const a of document.querySelectorAll("p[style='display:inline']")) {
+                                    for (const b of correctAnswerText.split(", ")) {
+                                        console.debug(a.textContent + ".includes(" + unescape(b) + ")");
+                                        if (a.textContent.includes(unescape(b))) {
+                                            a.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("option-pressed");
+                                            i++;
+                                        }
+                                    }
+                                }
+                                if (i < correctAnswerText.split(", ").length)
+                                    console.error("Failed to tag answers to the question! Over and Out.");
+                                else
+                                    console.log("%c Alternate Method Successful!", 'background: #222; color: #bada55');
+                        }
+                    }else
+                        console.error("Failed to find answer to the question! Over and Out.");
+                }
+
             } else
                 console.error("Failed to find question element!");
         };
@@ -50,7 +105,7 @@
         const retrieveAnswersButton = document.createElement("button");
         retrieveAnswersButton.innerHTML = '<i class="game-end-icon icon-fas-flag-checkered"></i>';
         retrieveAnswersButton.id = "retrieveAnswersButton";
-        retrieveAnswersButton.addEventListener("click",() => processResponse(apiResponse));
+        retrieveAnswersButton.addEventListener("click", () => processResponse(apiResponse));
         document.getElementsByClassName("actions-container")[0].appendChild(retrieveAnswersButton);
         document.addEventListener('keydown', (event) => {
             if (event.key === 'h') {
@@ -90,7 +145,7 @@
             }
         });
     }
-    
+
     let apiResponse = null;
     var code = "";
     let interval = setInterval(function() {

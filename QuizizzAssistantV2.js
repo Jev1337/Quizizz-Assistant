@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Quizizz Assistant
 // @namespace    https://github.com/Jev1337
-// @version      2.1.1
+// @version      2.9.9
 // @description  Assist with Quizizz by marking correct answers
 // @author       Malek
 // @match        https://quizizz.com/join/game/*
@@ -19,26 +19,80 @@
         divElement.innerHTML = html;
         return divElement.textContent;
     }
+
     function main() {
         const processResponse = (apiResponse) => {
             const questionElement = document.querySelector(".resizeable.gap-x-2.question-text-color.text-light");
-        
+
             if (questionElement) {
                 var questionText = questionElement.textContent;
                 const answer = apiResponse.data.answers.find((answer) => unescape(answer.question.text) === questionText);
                 if (answer) {
                     const correctAnswerText = answer.answers.map(answer => answer.text).join(', ');
                     console.log('%c Answer(s): ' + unescape(correctAnswerText), 'background: #222; color: #bada55');
+                    var i = 0;
                     for (const a of document.querySelectorAll("p[style='display:inline']")) {
                         for (const b of correctAnswerText.split(", ")) {
                             console.debug(a.textContent + " === " + unescape(b));
                             if (a.textContent === unescape(b)) {
                                 a.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("option-pressed");
+                                i++;
                             }
                         }
                     }
-                } else 
-                    console.error("Failed to find answer to the question!");
+                    if (i < correctAnswerText.split(", ").length) {
+                        console.error("Failed to tag all answers to the question! Retrying with alternate method...");
+                        i = 0;
+                        for (const a of document.querySelectorAll("p[style='display:inline']")) {
+                            for (const b of correctAnswerText.split(", ")) {
+                                console.debug(a.textContent + ".includes(" + unescape(b) + ")");
+                                if (a.textContent.includes(unescape(b))) {
+                                    a.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("option-pressed");
+                                    i++;
+                                }
+                            }
+                        }
+                        if (i < correctAnswerText.split(", ").length)
+                            console.error("Failed to tag answer! Over and Out.");
+                        else
+                            console.log("%c Alternate Method Successful!", 'background: #222; color: #bada55');
+                    }
+                } else {
+                    console.error("Failed to find answer to the question! Retrying with alternate method...");
+                    answer = apiResponse.data.answers.find((answer) => unescape(answer.question.text).includes(questionText));
+                    if (answer) {
+                        const correctAnswerText = answer.answers.map(answer => answer.text).join(', ');
+                        console.log('%c Answer(s): ' + unescape(correctAnswerText), 'background: #222; color: #bada55');
+                        var i = 0;
+                        for (const a of document.querySelectorAll("p[style='display:inline']")) {
+                            for (const b of correctAnswerText.split(", ")) {
+                                console.debug(a.textContent + " === " + unescape(b));
+                                if (a.textContent === unescape(b)) {
+                                    a.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("option-pressed");
+                                    i++;
+                                }
+                            }
+                        }
+                        if (i < correctAnswerText.split(", ").length) {
+                            console.error("Failed to tag all answers to the question! Retrying with alternate method...");
+                            i = 0;
+                            for (const a of document.querySelectorAll("p[style='display:inline']")) {
+                                for (const b of correctAnswerText.split(", ")) {
+                                    console.debug(a.textContent + ".includes(" + unescape(b) + ")");
+                                    if (a.textContent.includes(unescape(b))) {
+                                        a.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("option-pressed");
+                                        i++;
+                                    }
+                                }
+                            }
+                            if (i < correctAnswerText.split(", ").length)
+                                console.error("Failed to tag answer! Over and Out.");
+                            else
+                                console.log("%c Alternate Method Successful!", 'background: #222; color: #bada55');
+                        }
+                    } else
+                        console.error("Failed to find answer to the question! Over and Out.");
+                }
             } else
                 console.error("Failed to find question element!");
         };
