@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Quizizz Assistant
 // @namespace    https://github.com/Jev1337
-// @version      1.9.1
+// @version      1.9.2
 // @description  Assist with Quizizz by marking correct answers
 // @author       Malek
 // @match        https://quizizz.com/join/game/*
@@ -34,8 +34,8 @@
                     const correctAnswerText = correctAnswerIndexArray.map(index => answer.options[index].text).join(', ');
                     console.log('%c Answer(s): ' + unescape(correctAnswerText), 'background: #222; color: #bada55');
                     for (const a of document.querySelectorAll("p[style='display:inline']")) {
-                        console.debug(a.textContent + " === " + unescape(b));
                         for (const b of correctAnswerText.split(", ")) {
+                            console.debug(a.textContent + " === " + unescape(b));
                             if (a.textContent === unescape(b)) {
                                 a.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("option-pressed");
                             }
